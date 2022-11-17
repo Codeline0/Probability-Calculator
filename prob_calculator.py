@@ -18,7 +18,8 @@ class Hat:
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
     num_succes = 0
-    for num in num_experiments:
+    for num in range(num_experiments):
+        copy_contents = copy.copy(hat.contents)
         draw_balls = hat.draw(num_balls_drawn)
         succes = True
         for ball in expected_balls:
@@ -26,4 +27,5 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
                 succes = False
         if succes:
             num_succes += 1
+        hat.contents = copy_contents
     return num_succes/num_experiments
