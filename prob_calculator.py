@@ -17,4 +17,13 @@ class Hat:
         return draw_balls
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
-    pass
+    num_succes = 0
+    for num in num_experiments:
+        draw_balls = hat.draw(num_balls_drawn)
+        succes = True
+        for ball in expected_balls:
+            if draw_balls.count(ball) < expected_balls[ball]:
+                succes = False
+        if succes:
+            num_succes += 1
+    return num_succes/num_experiments
